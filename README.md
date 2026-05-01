@@ -1,91 +1,107 @@
 # GrindPulse
 
-A clean, minimal Pomodoro-style focus timer with streak tracking and session history. No accounts, no backend — everything lives in your browser.
+This is a simple focus timer I built to help you actually sit down and get work done.
 
-## Features
+No accounts. No syncing. No “sign up to continue” nonsense.
+Everything stays in your browser. You open it, you use it, that’s it.
 
-- **Focus Timer** — 25-minute work sessions with 5-minute break mode
-- **Task Tracking** — name each session before you start; editing locks while the timer runs
-- **Streak System** — daily streak increments on consecutive days, resets on any missed day
-- **Session History** — every completed session is saved with task name, duration, and timestamp
-- **Stats Dashboard** — total sessions, total focus time, current streak, and best streak
-- **Dark / Light Mode** — toggle with one click, preference persisted across visits
-- **Sound Alert** — short beep via Web Audio API when a session ends
-- **Fully Offline** — no backend, no auth; all data stored in `localStorage`
+---
 
-## How It Works
+## what you can do with it
 
-1. Type what you're working on in the task field
-2. Click **Start** — the 25-minute countdown begins and the ring depletes
-3. When time runs out you'll hear a beep and see "Session Complete!"
-4. Your session is logged and your streak updates automatically
-5. Switch to **Break** for a 5-minute rest, then repeat
+You get a clean 25-minute focus timer with a short break mode. Nothing fancy, just what works.
 
-### Streak Logic
+You can name what you’re working on before you start. Once the timer is running, it locks so you don’t keep changing your task mid-session.
 
-| Scenario | Result |
-|---|---|
-| Completed a session today (already counted) | Streak unchanged |
-| Completed yesterday → session today | Streak + 1 |
-| Missed one or more days | Streak resets to 1 |
+It tracks your streak too. If you show up every day, it grows. Miss a day, it resets. Simple and a bit painful… which is the point.
 
-## Tech Stack
+Every time you finish a session, it gets saved. You can look back and see what you worked on, how long you focused, and when you did it.
 
-| Layer | Choice |
-|---|---|
-| UI | React 19 |
-| Bundler | Vite 8 |
-| Styling | Plain CSS with CSS custom properties |
-| Persistence | `localStorage` |
-| Audio | Web Audio API (no files) |
-| Libraries | Zero runtime dependencies beyond React |
+There’s also a small stats section so you can quickly check:
 
-## Project Structure
+* how many sessions you’ve done
+* how much total time you’ve focused
+* your current streak
+* your best streak
+
+You can switch between dark and light mode anytime. It remembers your choice.
+
+When a session ends, it plays a short beep. No audio files, just a quick sound so you know you're done.
+
+And yeah, ts works offline No backend No login, Just localStorage :)
+
+
+---
+
+## How the streak system works
+
+It’s strict on purpose.
+
+If you already completed a session today, nothing changes.
+
+If you worked yesterday and then again today, your streak goes up by one.
+
+If you skip even one day, it resets back to 1.
+
+No excuses built in.
+
+---
+
+## tech stackk
+
+* React for the UI
+* Vite to run it
+* plain CSS for styling
+* localStorage for saving data
+* Web Audio API for the beep
+
+No extra libraries doing magic in the background.
+
+---
+
+## project structure (quick look)
 
 ```
 src/
-├── components/
-│   ├── Timer.jsx        # Countdown ring + controls
-│   ├── TaskInput.jsx    # Task name field
-│   ├── SessionList.jsx  # Past sessions (newest first)
-│   └── Stats.jsx        # Stats dashboard (4 cards)
-├── utils/
-│   ├── storage.js       # localStorage read/write helpers
-│   └── streak.js        # Streak calculation logic
-├── App.jsx              # Root component, all shared state
-├── App.css              # All component styles + theming tokens
-└── index.css            # CSS reset
+  components/
+    Timer.jsx
+    TaskInput.jsx
+    SessionList.jsx
+    Stats.jsx
+  utils/
+    storage.js
+    streak.js
+  App.jsx
+  App.css
+  index.css
 ```
 
-## Run Locally
+---
 
-```bash
+## run it locally
+
+```
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
-
-## Production Build
-
-```bash
-npm run build    # outputs to dist/
-npm run preview  # preview the production build locally
-```
-
-## Deploy on Vercel
-
-1. Push this repository to GitHub
-2. Go to [vercel.com](https://vercel.com) → **Add New Project**
-3. Import your repository — Vercel auto-detects Vite
-4. Click **Deploy** — done
-
-Your app will be live at `https://your-project.vercel.app`
-
-## Live Demo
-
-[Add your Vercel URL here after deploying]
+then open
+[http://localhost:5173](http://localhost:5173)
 
 ---
 
-Built with React + Vite. No AI slop. No overengineering.
+## build for production
+
+```
+npm run build
+npm run preview
+```
+
+---
+
+## live demo
+
+[See it livee -> ](https://grind-pulse.vercel.app/)
+---
+
+Thanksss!
